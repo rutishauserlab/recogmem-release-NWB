@@ -1,0 +1,29 @@
+
+include LICENSE.txt
+include README.MD
+
+recursive-include RutishauserLabtoNWB *.txt
+recursive-include RutishauserLabtoNWB/assets *.png
+recursive-include RutishauserLabtoNWB/events/newolddelay *.ini
+recursive-include RutishauserLabtoNWB/events/newolddelay/python/export/demo *.ipynb
+
+#Inlude .m files (MATLAB)
+global-include *.m
+global-include *.mat
+global-include *.yaml
+global-include *.iss
+global-include *.txt
+global-include *.jar
+global-include *.json
+global-include *.sh
+global-include *.md
+global-include *.py
+
+
+
+
+
+
+
+
+
