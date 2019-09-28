@@ -61,7 +61,7 @@ The matNWB API is provided in the same download as above (RutishauserLab2NWB) --
 *Note: We used matNWB version 0.2.1*
 
 
-##Package Dependencies (Python)
+## Package Dependencies (Python)
 
 Here are a list of Python packages we used, and their respective versions: 
 
