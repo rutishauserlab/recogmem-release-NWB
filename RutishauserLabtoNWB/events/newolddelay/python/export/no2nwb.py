@@ -20,7 +20,6 @@ from pynwb.image import OpticalSeries
 from pynwb.file import Subject
 import datetime
 import cv2
-import sys
 import configparser
 import os.path
 from datetime import datetime, timezone
@@ -63,8 +62,6 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
     if not os.path.exists(filename):
         print('This file does not exist: {}'.format(filename))
         print("Check filename/and or directory")
-        print("Exiting.......")
-        sys.exit(-1)
 
     # Read the config file
     try:
@@ -75,7 +72,6 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
     except:
         print('Failed to read the config file..')
         print('Does this file exist: {}'.format(os.path.exists(filename)))
-        sys.exit(-1)
 
     #  Read Meta-data from INI file.
     for section in config.sections():

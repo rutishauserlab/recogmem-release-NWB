@@ -126,7 +126,7 @@ oldls = get(h,'LineStyleOrder');
 oldco = get(h,'ColorOrder');
 
 % Full, Black lines
-set(h,'LineStyleOrder', ['.'])   
+set(h,'LineStyleOrder', ['-'])   
 set(h,'ColorOrder', [0 0 0])   
 
 % Do the plotting one neuron at a time

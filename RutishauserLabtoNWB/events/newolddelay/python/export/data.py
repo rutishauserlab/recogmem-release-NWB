@@ -19,7 +19,6 @@ import pandas as pd
 from scipy.io import loadmat
 import RutishauserLabtoNWB.events.newolddelay.python.export.cell as cell
 import RutishauserLabtoNWB.events.newolddelay.python.export.trial as trial
-import sys
 import configparser
 
 
@@ -166,13 +165,13 @@ class NOData:
         filename = ''
         if variant == 1:
             filename = 'NewOldDelay_v3.mat'
-            filename2 = 'NewOldDelayStimuli.mat'
+            filename2 = 'newOldDelayStimuli.mat'
         elif variant == 2:
             filename = 'NewOldDelay2_v3.mat'
-            filename2 = 'NewOldDelayStimuli2.mat'
+            filename2 = 'newOldDelayStimuli2.mat'
         elif variant == 3:
             filename = 'NewOldDelay3_v3.mat'
-            filename2 = 'NewOldDelayStimuli3.mat'
+            filename2 = 'newOldDelayStimuli3.mat'
 
         path_to_labels = os.path.join(path_to_data, 'Code', 'dataRelease', 'stimFiles', filename)
         experiment_stimuli = loadmat(path_to_labels)['experimentStimuli']
@@ -283,8 +282,6 @@ class NOData:
         if not os.path.exists(filename):
             print('This file does not exist: {}'.format(filename))
             print("Check filename/and or directory")
-            print("Exiting.......")
-            sys.exit(-1)
 
         # Read the config file
         try:
@@ -295,7 +292,6 @@ class NOData:
         except:
             print('Failed to read the config file..')
             print('Does this file exist: {}'.format(os.path.exists(filename)))
-            sys.exit(-1)
 
         # Append Meta-data to sessions
         sessions = {}

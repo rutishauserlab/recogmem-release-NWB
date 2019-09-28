@@ -33,7 +33,6 @@ import RutishauserLabtoNWB.events.newolddelay.python.export.data as data
 from pynwb import NWBHDF5IO
 import numpy as np
 import logging
-import sys
 
 
 def NO2NWB_export(path_to_data):
@@ -54,7 +53,7 @@ def NO2NWB_export(path_to_data):
                                     'defineNOsessions_release.ini')
     if not os.path.exists(subjects_ini):
         print('This file does not exist: {}'.format(subjects_ini))
-        sys.exit(-1)
+
 
     # Create the NWB file and extract data from the original data format
     NOdata = data.NOData(path_to_data, subjects_ini)
@@ -79,7 +78,7 @@ def NO2NWB_export(path_to_data):
         outputFilePath = os.path.join(pathToNWBfiles, session_name)
 
         io = NWBHDF5IO(outputFilePath, mode='w')
-        io.write(nwbfile)
+        io.write(nwbfile, cache_spec = False)
         io.close()
         print('Successfully written this file: {}'.format(outputFilePath))
 

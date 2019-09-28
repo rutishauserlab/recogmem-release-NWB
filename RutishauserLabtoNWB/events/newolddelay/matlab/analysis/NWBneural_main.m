@@ -16,7 +16,7 @@
 codePath = 'C:\svnwork\nwbsharing\RutishauserLabtoNWB\'; % => enter here your path where the code is located. For Windows: 'nwb_example\'; For Linux or Mac: 'nwb_example/'
 
 % Point this directory to where the downloaded NWB data is located.
-basepathData = 'V:\LabUsers\chandravadian\NWB Data\matlab_mac\';%  => enter here your path where the data is located. For Windows: 'data\'; For Linux or Mac: 'data/'
+basepathData = 'V:\LabUsers\chandravadian\NWB Data\matlab_win\';%  => enter here your path where the data is located. For Windows: 'data\'; For Linux or Mac: 'data/'
      
 addpath(fullfile(codePath)); 
 
@@ -57,7 +57,7 @@ end
 
 %List of sessions to analyze. For testing purposes, list only one or a few. To process all: set equal to NO_listOf_allUsable
 
-allSessionsToUse = [NWB_listOf_allUsable(1) NWB_listOf_allUsable(2)]; 
+allSessionsToUse = [132]; 
 %allSessionsToUse = NWB_listOf_allUsable %process all available
 
     

@@ -5,7 +5,6 @@ import re
 import os
 from scipy.stats import norm
 import configparser
-import sys
 import RutishauserLabtoNWB.events.newolddelay.python.export.no2nwb as no2nwb
 
 
@@ -431,8 +430,6 @@ def getpatientfile_fromINIfile(patientID, dataDirectory):
     if not os.path.exists(filename):
         print ('This file does not exist: {}'.format(filename))
         print ("Check filename/and or directory")
-        print ("Exiting.......")
-        sys.exit(-1)
 
     #Read the config file
     try:
@@ -441,7 +438,6 @@ def getpatientfile_fromINIfile(patientID, dataDirectory):
     except:
         print ('Failed to read the config file..')
         print ('Does this file exist: {}'.format(os.path.exists(filename)))
-        sys.exit(-1)
 
 
     #Read the headers of the configuration file
@@ -460,14 +456,12 @@ def getpatientfile_fromINIfile(patientID, dataDirectory):
         elif not (str(patientID) in config):
             print ("Invalid patientID: {}".format(patientID))
             print ("Check defineNOsessions_release.ini....")
-            sys.exit(-1)
 
     #Get Data from Data Directory
     patient_sessionpath=' '
     if not os.path.exists(dataDirectory):
          print('This directory does not exist: {}'.format(dataDirectory))
          print('Please Enter a valid Directory')
-         sys.exit(-1)
     else:
         NWBfiles = os.listdir(str(dataDirectory))
 
@@ -479,7 +473,6 @@ def getpatientfile_fromINIfile(patientID, dataDirectory):
     if not (os.path.exists(patient_sessionpath)):
         print ('This file does not exists: {}'.format(patient_sessionpath))
         print ('Check file and/or directory')
-        sys.exit(-1)
 
 
     return str(patient_sessionpath)

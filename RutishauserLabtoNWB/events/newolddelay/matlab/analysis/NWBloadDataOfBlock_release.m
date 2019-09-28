@@ -97,7 +97,7 @@ RTs_vsQonset = (responseTime-questionOnsetTime)/1000;
 
 %== recog stimuli
 
-all_category_ids = nwb.intervals_trials.vectordata.get('stimCategory').data.load();
+all_category_ids = double(nwb.intervals_trials.vectordata.get('stimCategory').data.load());
 newOldRecogLabels = [];
 stimuliRecog = [];
 stimuliLearn = [];
@@ -106,44 +106,30 @@ if length(all_category_ids) == 150
     stimuliRecog = all_category_ids(51:150);
     stimuliLearn = all_category_ids(1:50);
     for i = 51:150
-        try %matlab load
             temp = nwb.intervals_trials.vectordata.get('new_old_labels_recog').data.load();
             newOldRecogLabels = [newOldRecogLabels, (temp(i))];
-        catch %python load 
-            temp = (nwb.intervals_trials.vectordata.get('new_old_labels_recog').data);
-            newOldRecogLabels = [newOldRecogLabels, str2num(cell2mat(temp(i)))];
-        end   
         
     end
 elseif length(all_category_ids) == 197
     stimuliRecog = all_category_ids(98:197);
     stimuliLearn = all_category_ids(1:97); 
     for i = 98:197
-        try %matlab load
             temp = nwb.intervals_trials.vectordata.get('new_old_labels_recog').data.load();
-            newOldRecogLabels = [newOldRecogLabels, (temp(i))];
-        catch %python load 
-            temp = (nwb.intervals_trials.vectordata.get('new_old_labels_recog').data);
-            newOldRecogLabels = [newOldRecogLabels, str2num(cell2mat(temp(i)))];
-        end   
-        
+            newOldRecogLabels = [newOldRecogLabels, (temp(i))];       
     end
 else
     stimuliRecog = all_category_ids(101:200);
     stimuliLearn = all_category_ids(1:100);
     for i = 101:200
-        try %matlab load
             temp = nwb.intervals_trials.vectordata.get('new_old_labels_recog').data.load();
             newOldRecogLabels = [newOldRecogLabels, (temp(i))];
-        catch %python load 
-            temp = (nwb.intervals_trials.vectordata.get('new_old_labels_recog').data);
-            newOldRecogLabels = [newOldRecogLabels, str2num(cell2mat(temp(i)))];
-        end    
-        %newOldRecogLabels = [newOldRecogLabels, (temp(i))];
     end
 end
 
-
+if iscell(newOldRecogLabels)
+    newOldRecogLabels = str2num(cell2mat(newOldRecogLabels(:)));
+    newOldRecogLabels = newOldRecogLabels';
+end 
 
 categoryMapping = [];
 

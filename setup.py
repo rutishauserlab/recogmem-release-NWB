@@ -5,7 +5,7 @@ with open("README.MD", 'r') as f:
 
 setuptools.setup(
    name='RutishauserLabtoNWB',
-   version='1.0.2',
+   version='1.0.3',
    description='Export and Analysis Code for NWB:N',
    license="BSD",
    long_description=long_description,
@@ -16,7 +16,7 @@ setuptools.setup(
               'RutishauserLabtoNWB/events/newolddelay/python/analysis', 'RutishauserLabtoNWB/events/newolddelay/python/analysis/demo',
               'RutishauserLabtoNWB/events/newolddelay/python/export',
               'RutishauserLabtoNWB/events/newolddelay/python/export/demo', 'RutishauserLabtoNWB/InHouse', 'RutishauserLabtoNWB/NWBData'],
-   install_requires=['numpy', 'pandas', 'scipy', 'matplotlib', 'pynwb', 'opencv-python'], #external packages as dependencies
+   install_requires=['numpy', 'pandas', 'scipy', 'matplotlib', 'pynwb==1.1.0', 'opencv-python', 'hdmf==1.2.0'], #external packages as dependencies
    keywords = ['Cognitive Neuroscience', 'Neuroscience', 'Neurosurgery', 'Single Unit Recordings', 'Data Standardization'],
     include_package_data=True,
     classifiers=[ "Programming Language :: Python :: 3", "Operating System :: OS Independent"],

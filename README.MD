@@ -52,13 +52,25 @@ Alternatively, the pyNWB can be downloaded via:
 `git clone https://github.com/NeurodataWithoutBorders/pynwb.git
 `
 
-*Note: We used pyNWB version 1.0.3* 
+*Note: We used pyNWB version 1.1.0* 
 
 ### [matNWB](https://github.com/NeurodataWithoutBorders/matnwb)
 
 The matNWB API is provided in the same download as above (RutishauserLab2NWB) -- it can be found under 3rd Party. 
 
 *Note: We used matNWB version 0.2.1*
+
+
+##Package Dependencies (Python)
+
+Here are a list of Python packages we used, and their respective versions: 
+
+* numpy (1.17.2)
+* pandas (0.23.0)
+* scipy (1.1.0)
+* matplotlib (2.2.2)
+* pynwb (1.1.0)
+* hdmf (1.2.0)
 
 ## Python Export and Analysis
 

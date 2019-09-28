@@ -95,7 +95,3 @@ def NO2NWB_analysis(NWBFilePath, list_of_patients_behavior, list_of_patients_neu
 
         for i in range(0, len(ms_neurons)):
             ms_neurons[i].raster_psth(cell_type='memory')
-
-
-
-
