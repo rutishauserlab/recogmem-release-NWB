@@ -725,21 +725,19 @@ for i = 1:length(NOsessions)
        
        stimuli_presentation = [stimuli_presentation_learn; stimuli_presentation_recog ];
        
-       
- 
        %== add all raw images into a large datastructure to load into OpticalSeries
        % all_stimli is  (r,g,b) x Y x X x # frames.    so 3,nrPixelsY,nrPixelsX,nrFrames
        nrFrames = length(stimuli_presentation);
        all_stimuli = uint8(nan(3, 300, 400, nrFrames));
-        for u = 1:length(stimuli_presentation)      
+       for u = 1:length(stimuli_presentation)
            image_ofTrial_raw = stimuli_presentation{u};
-            if ndims(image_ofTrial_raw) == 2
-                % need to convert greyscale to RGB to make uniform
-                image_ofTrial_raw = cat(3, image_ofTrial_raw, image_ofTrial_raw, image_ofTrial_raw);
-            end
-            image_ofTrial_converted = permute( image_ofTrial_raw, [3 1 2] ); 
-            all_stimuli(:,:,:,u) = image_ofTrial_converted;   % re-arrange dimenions so they are (r,g,b) x Y x X  
-        end
+           if ndims(image_ofTrial_raw) == 2
+               % need to convert greyscale to RGB to make uniform
+               image_ofTrial_raw = cat(3, image_ofTrial_raw, image_ofTrial_raw, image_ofTrial_raw);
+           end
+           
+           all_stimuli(:,:,:,u) = permute( image_ofTrial_raw, [3 1 2] );   % re-arrange dimenions so they are (r,g,b) x Y x X
+       end
         
         % test to see that images can be plotted
         %testImg = all_stimuli(:,:,:,155);
