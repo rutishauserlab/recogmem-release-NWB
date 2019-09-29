@@ -118,8 +118,8 @@ This code shows how to import the NWB-formatted data. The main analysis script i
 import RutishauserLabtoNWB as RLab
 
 NWBFilePath = 'V:\\LabUsers\\chandravadian\\NWB Data\\python'
-list_of_patients_behavior = [5, 6]
-list_of_patients_neurons = [132]
+list_of_patients_behavior = [5, 6]  # List of sessions to summarize behavior. Set to [] to skip
+list_of_patients_neurons = [132]    # List of sessions to analyze neural data for. Set to [] to skip
 
 RLab.NO2NWB_analysis(NWBFilePath,list_of_patients_behavior, list_of_patients_neurons)
 
