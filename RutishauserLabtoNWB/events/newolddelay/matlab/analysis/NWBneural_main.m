@@ -3,10 +3,9 @@
 % NWBneural_main_release.m
 %
 % Code that demonstrates how to read and utilize the human single-unit MTL data acquired during the new/old recognition task.
-% This code is part of the data, code, and description released as part of our 2017 data release (DOI http://dx.doi.org/10.5061/dryad.46st5 ). 
-% The data is migrated from the original data format to the NWB data format
-% for easy data sharing. 
-% 
+% This version of the code relies on the NWB-formated version of the data.
+%
+% See Chandravadia et al. 2019, submitted.
 %==================================================================
 
 
@@ -18,10 +17,10 @@ codePath = '/home/urut/svnwork/recogmem-release-NWB.git/trunk/RutishauserLabtoNW
 
 % Point this directory to where the downloaded NWB data is located.
 %basepathData = 'V:\LabUsers\chandravadian\NWB Data\matlab_win\';%  => enter here your path where the data is located. For Windows: 'data\'; For Linux or Mac: 'data/'
-basepathData = '/media/urut/My Passport/dataNWB/matlab_exportedUeli_linux3/';
+basepathData = '/media/urut/My Passport/dataNWB/matlab_exportedUeli_linux4/';
    
 %List of sessions to analyze (for testing purposes)
-allSessionsToUse = [132]; 
+allSessionsToUse = [5]; 
 
 runAllAvailableSesssions = 0 ; % enable to process all available sessions (not just the one(s) specified above). Uses NWB_listOf_allUsable
 

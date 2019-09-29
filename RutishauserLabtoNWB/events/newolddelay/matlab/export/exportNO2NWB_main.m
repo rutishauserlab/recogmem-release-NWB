@@ -12,9 +12,14 @@
 %
 %
 %   This code is part of the data, code, and description released as part 
-%   of our 2019 data release: TODO: (Add Repository).
+%   of our 2019 data release [link will be added here after acceptance].
 %
-%  The two papers that describe this data are:
+%  Submitted paper:
+%  "A NWB-based Dataset and Processing Pipeline of Human Single-Neuron Activity During a Declarative Memory Task" by 
+%  N. Chandravadia, D. Liang, A. G.P. Schjetnan, A. Carlson, M. Faraut, J.M. Chung, C.M. Reed, B. Dichter, U. Maoz, 
+%  S. Kalia, T. Valiante, A. N. Mamelak & U. Rutishauser. Submitted (2019).
+%
+%  The two published papers that describe this data are:
 %
 %  Rutishauser, U., S. Ye, M. Koroma, O. Tudusciuc, I.B. Ross, J.M. Chung, 
 %  and A.N. Mamelak. Representation of retrieval confidence by single 
