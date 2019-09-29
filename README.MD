@@ -3,11 +3,7 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Generic badge](https://img.shields.io/badge/release-1.0.0-green.svg)](https://github.com/rutishauserlab/recogmem-release-NWB/releases/)
 
-
-
-<!--- Add Introduction here ---> 
 ## Introduction 
-
 
 This repository contains tools/methods to export human single neuron data into the [Neurodata Without Borders](https://www.nwb.org/) Format, and analyze such data in NWB. This dataset is entirely in the NWB Format, and the export and analysis scripts are in both Python and MATLAB. 
 
@@ -22,14 +18,16 @@ Abstract of the paper:
 </p>
 
 <!--- Add Data Descriptor Link here ---> 
-A previous version of this dataset (which contains less data than this dataset) was [released previously](https://datadryad.org/resource/doi:10.5061/dryad.46st5) and is described in this [data descriptor](https://www.nature.com/articles/sdata201810).
+A previous version of this dataset (which contains less data than this dataset and is not in NWB) was [released previously](https://datadryad.org/resource/doi:10.5061/dryad.46st5) and is described in this [data descriptor (Faraut et al. 2018)](https://www.nature.com/articles/sdata201810).
 
 ## Installation (Code)
 
 For python, the code within this repository can be installed via `pip`:
+
 `pip install RutishauserLabtoNWB` or `pip3 install RutishauserLabtoNWB`
 
 For matlab or python, this repository can be downloaded via:
+
 `git clone https://github.com/rutishauserlab/recogmem-release-NWB.git`
 
 
