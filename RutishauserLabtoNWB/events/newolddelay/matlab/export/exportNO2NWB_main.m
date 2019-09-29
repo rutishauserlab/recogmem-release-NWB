@@ -36,16 +36,17 @@
 
 %% Section 1 -- Set Parameters - modify this section before running this code !
 
-%Input Base Path to Faraut et al base path 
-basepath = 'C:\Users\chandravadn1\Desktop\code\data\Faraut et al 2018\';
+%Path to native data to be exported
+
+%basepath = 'C:\Users\chandravadn1\Desktop\code\data\Faraut et al 2018\';
+basepath = '/media/urut/My Passport/dataNWB/nativeData/';
+
 %Add base code path (e.g., 'C:\svnwork\nwbsharing') 
-codePath = 'C:\svnwork\nwbsharing\RutishauserLabtoNWB';
+codePath = '/home/urut/svnwork/recogmem-release-NWB.git/trunk/RutishauserLabtoNWB/';
 
+exportStimInfo = 0;   % 0 no, 1 yes.  If turned off, the resulting NWB files do not contain the stimuli shown (images). This reduces the size of the NWB files considerably
 
-
-% =================================================================================
-% =======================Nothing Below Needed======================================
-% =================================================================================
+% =======================No modifications needed below this======================================
 %% Create NWB file object 
 
 %Get ini file
@@ -652,106 +653,109 @@ for i = 1:length(NOsessions)
    
     
    %% Add Stimuli to NWB file 
-    
-   %Get the path to stimuli 
-    stimuliPath = [basepath, filesep,'Stimuli', filesep];
    
-   %validation
-     if ~exist(stimuliPath)
-        error('This file does not exiss: %s', stimuliPath)
-     end
-     mode = 2; %mode 2
-   % ============================================================
-   [stimuliLearn, stimuliRecog, ~, ~, ~, ~, ~, ...
-       ~, ~, ~, ~, ~, ~] = NOloadDataOfBlock_release_NWB( sessionInfo, mode,basepathData ); 
-
-   %Get stimuli mapping 
-   [stimuliMapping] = getStimuliMapping(basepath, variant) ;
-   %transpose stimuli
-   stimuliLearn = stimuliLearn';
-   stimuliRecog = stimuliRecog';
-   
-   stimuli_presentation_learn = {};
-   % === Get Stimuli for learning
-   for st = 1:length(stimuliLearn)
-       
-       %(e.g.,\Stimuli\newolddelay\houses)
-       stimuliPath = fullfile(basepath, 'Stimuli', cell2mat(stimuliMapping(stimuliLearn(st), 1)) , ...
-           cell2mat(stimuliMapping(stimuliLearn(st), 2)), ... 
-           cell2mat(stimuliMapping(stimuliLearn(st), 3)));
+   if exportStimInfo
+       %Get the path to stimuli
+       stimuliPath = [basepath, filesep,'Stimuli', filesep];
        
        %validation
        if ~exist(stimuliPath)
-           error('This file does not exist: %s', stimuliPath) 
-       end 
+           error('This file does not exiss: %s', stimuliPath)
+       end
+       mode = 2; %mode 2
+       % ============================================================
+       [stimuliLearn, stimuliRecog, ~, ~, ~, ~, ~, ...
+           ~, ~, ~, ~, ~, ~] = NOloadDataOfBlock_release_NWB( sessionInfo, mode,basepathData );
        
-       %Load Stimuli 
-       img = imread(stimuliPath);
-       resize_img = imresize(img,[300 400]);
-       stimuli_presentation_learn{st, 1} = resize_img;
-       %Add Stimuli Learn to NWB file 
-       stimulusTag = ['stimuli_learn_', num2str(st)];
+       %Get stimuli mapping
+       [stimuliMapping] = getStimuliMapping(basepath, variant) ;
+       %transpose stimuli
+       stimuliLearn = stimuliLearn';
+       stimuliRecog = stimuliRecog';
        
+       stimuli_presentation_learn = {};
+       % === Get Stimuli for learning
+       for st = 1:length(stimuliLearn)
+           
+           %(e.g.,\Stimuli\newolddelay\houses)
+           stimuliPath = fullfile(basepath, 'Stimuli', cell2mat(stimuliMapping(stimuliLearn(st), 1)) , ...
+               cell2mat(stimuliMapping(stimuliLearn(st), 2)), ...
+               cell2mat(stimuliMapping(stimuliLearn(st), 3)));
+           
+           %validation
+           if ~exist(stimuliPath)
+               error('This file does not exist: %s', stimuliPath)
+           end
+           
+           %Load Stimuli
+           img = imread(stimuliPath);
+           resize_img = imresize(img,[300 400]);
+           stimuli_presentation_learn{st, 1} = resize_img;
+           %Add Stimuli Learn to NWB file
+           stimulusTag = ['stimuli_learn_', num2str(st)];
+           
+           
+       end
        
-   end 
-
-   % === Get Stimuli for Recog
-   stimuli_presentation_recog = {};
-   for st = 1:length(stimuliRecog)
+       % === Get Stimuli for Recog
+       stimuli_presentation_recog = {};
+       for st = 1:length(stimuliRecog)
+           
+           %(e.g.,\Stimuli\newolddelay\houses)
+           stimuliPath = fullfile(basepath, 'Stimuli', cell2mat(stimuliMapping(stimuliRecog(st), 1)) , ...
+               cell2mat(stimuliMapping(stimuliRecog(st), 2)), ...
+               cell2mat(stimuliMapping(stimuliRecog(st), 3)));
+           
+           %validation
+           if ~exist(stimuliPath)
+               error('This file does not exist: %s', stimuliPath)
+           end
+           
+           %Load Stimuli
+           img = imread(stimuliPath);
+           %Resize Pixels
+           resize_img = imresize(img,[300 400]);
+           stimuli_presentation_recog{st, 1} = resize_img;
+           
+           %Add Stimuli Learn to NWB file
+           stimulusTag = ['stimuli_recog_', num2str(st)];
+           
+           
+       end
        
-       %(e.g.,\Stimuli\newolddelay\houses)
-       stimuliPath = fullfile(basepath, 'Stimuli', cell2mat(stimuliMapping(stimuliRecog(st), 1)) , ...
-           cell2mat(stimuliMapping(stimuliRecog(st), 2)), ... 
-           cell2mat(stimuliMapping(stimuliRecog(st), 3)));
+       stimuli_presentation = [stimuli_presentation_learn; stimuli_presentation_recog ];
        
-       %validation
-       if ~exist(stimuliPath)
-           error('This file does not exist: %s', stimuliPath) 
-       end 
+       %Add all Pixels into a Single Array
+       index_x = 1;
+       start = 1;
+       all_stimuli = [];
+       for u = 1:length(stimuli_presentation)
+           x = 300.*index_x;
+           try
+               all_stimuli(start:x, 1:400, 1:3) = stimuli_presentation{u, 1};
+           catch
+               all_stimuli(start:x, 1:400) = stimuli_presentation{u, 1};
+           end
+           index_x = index_x + 1;
+           start = x+1;
+       end
        
-       %Load Stimuli 
-       img = imread(stimuliPath);
-       %Resize Pixels
-       resize_img = imresize(img,[300 400]);
-       stimuli_presentation_recog{st, 1} = resize_img;
+       %Add stimulus information
+       stimulus = types.core.OpticalSeries('data', uint8(all_stimuli), 'timestamps',  [start_times'], 'orientation', 'lower left', ...
+           'format', 'raw', 'distance', 0.7, 'field_of_view', [0.3, 0.4, 0.7], 'dimension', [300,400, 3], ...
+           'data_unit', 'meters');
+       nwb.stimulus_presentation.set('StimulusPresentation', stimulus);
        
-       %Add Stimuli Learn to NWB file 
-       stimulusTag = ['stimuli_recog_', num2str(st)];
-     
-       
-   end 
-   
-   stimuli_presentation = [stimuli_presentation_learn; stimuli_presentation_recog ];
-   
-  %Add all Pixels into a Single Array
-  index_x = 1;
-  start = 1; 
-  all_stimuli = [];
-  for u = 1:length(stimuli_presentation) 
-     x = 300.*index_x; 
-    try
-        all_stimuli(start:x, 1:400, 1:3) = stimuli_presentation{u, 1};
-    catch 
-        all_stimuli(start:x, 1:400) = stimuli_presentation{u, 1};
-    end 
-    index_x = index_x + 1; 
-    start = x+1;
-  end 
-   
-  %Add stimulus
-   stimulus = types.core.OpticalSeries('data', all_stimuli, 'timestamps',  [start_times'], 'orientation', 'lower left', ...
-                              'format', 'raw', 'distance', 0.7, 'field_of_view', [0.3, 0.4, 0.7], 'dimension', [300,400, 3], ... 
-                              'data_unit', 'meters');
-   nwb.stimulus_presentation.set('StimulusPresentation', stimulus);
-   
+   end
    
    
 %% Export the NWB file
 NWBfilename = NOsessions(i).filename;
 
-exportFile = [basepath_NWBsave, filesep, NWBfilename]; 
-nwbExport(nwb, exportFile); 
+exportFileName = [basepath_NWBsave, filesep, NWBfilename]; 
 
+disp(['Exporting: ' exportFileName]);
+nwbExport(nwb, exportFileName); 
 
 end 
 
