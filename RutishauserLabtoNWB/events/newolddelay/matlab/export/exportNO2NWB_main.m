@@ -44,7 +44,7 @@ basepath = '/media/urut/My Passport/dataNWB/nativeData/';
 %Add base code path (e.g., 'C:\svnwork\nwbsharing') 
 codePath = '/home/urut/svnwork/recogmem-release-NWB.git/trunk/RutishauserLabtoNWB/';
 
-exportStimInfo = 0;   % 0 no, 1 yes.  If turned off, the resulting NWB files do not contain the stimuli shown (images). This reduces the size of the NWB files considerably
+exportStimInfo = 1;   % 0 no, 1 yes.  If turned off, the resulting NWB files do not contain the stimuli shown (images). This reduces the size of the NWB files considerably
 
 % =======================No modifications needed below this======================================
 %% Create NWB file object 
@@ -725,23 +725,28 @@ for i = 1:length(NOsessions)
        
        stimuli_presentation = [stimuli_presentation_learn; stimuli_presentation_recog ];
        
-       %Add all Pixels into a Single Array
-       index_x = 1;
-       start = 1;
-       all_stimuli = [];
-       for u = 1:length(stimuli_presentation)
-           x = 300.*index_x;
-           try
-               all_stimuli(start:x, 1:400, 1:3) = stimuli_presentation{u, 1};
-           catch
-               all_stimuli(start:x, 1:400) = stimuli_presentation{u, 1};
-           end
-           index_x = index_x + 1;
-           start = x+1;
-       end
        
+ 
+       %== add all raw images into a large datastructure to load into OpticalSeries
+       % all_stimli is  (r,g,b) x Y x X x # frames.    so 3,nrPixelsY,nrPixelsX,nrFrames
+       nrFrames = length(stimuli_presentation);
+       all_stimuli = uint8(nan(3, 300, 400, nrFrames));
+        for u = 1:length(stimuli_presentation)      
+           image_ofTrial_raw = stimuli_presentation{u};
+            if ndims(image_ofTrial_raw) == 2
+                % need to convert greyscale to RGB to make uniform
+                image_ofTrial_raw = cat(3, image_ofTrial_raw, image_ofTrial_raw, image_ofTrial_raw);
+            end
+            image_ofTrial_converted = permute( image_ofTrial_raw, [3 1 2] ); 
+            all_stimuli(:,:,:,u) = image_ofTrial_converted;   % re-arrange dimenions so they are (r,g,b) x Y x X  
+        end
+        
+        % test to see that images can be plotted
+        %testImg = all_stimuli(:,:,:,155);
+        %figure; imshow(  permute(testImg, [2 3 1]))
+          
        %Add stimulus information
-       stimulus = types.core.OpticalSeries('data', uint8(all_stimuli), 'timestamps',  [start_times'], 'orientation', 'lower left', ...
+       stimulus = types.core.OpticalSeries('data', all_stimuli, 'timestamps',  [start_times'], 'orientation', 'lower left', ...
            'format', 'raw', 'distance', 0.7, 'field_of_view', [0.3, 0.4, 0.7], 'dimension', [300,400, 3], ...
            'data_unit', 'meters');
        nwb.stimulus_presentation.set('StimulusPresentation', stimulus);
