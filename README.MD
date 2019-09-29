@@ -72,6 +72,8 @@ Here are a list of Python packages we used, and their respective versions:
 * pynwb (1.1.0)
 * hdmf (1.2.0)
 
+Please assure that you're using the above versions of pywnb and hdmf, because newer development versions often break things. Use `pip install pynwb==1.1.0` and  `pip install hdmf==1.2.0` to force installation of these versions.
+
 ## Python Export and Analysis
 
 
@@ -92,7 +94,7 @@ The main export script is `no2nwb_main.py`. Modify the following parameters:
 import RutishauserLabtoNWB as RLab
 
 
-pathTONativeData = 'C:\\Users\\chandravadn1\\Desktop\\code\\data\\'
+pathTONativeData = 'C:\\Users\\chandravadn1\\Desktop\\code\\dataNative\\'
 
 RLab.NO2NWB_export(pathTONativeData)
 ```
@@ -109,21 +111,21 @@ Once you have changed the the above parameters, run `NO2NWB_export`. This will b
 This code shows how to import the NWB-formatted data. The main analysis script is `main.py`. Modify the following parameters:
 
 * NWBFilePath: The path to the exported NWB files. 
-* list_of_patients_behavior: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 144]```. You can also input ```list_of_patients = 'all'``` to examine the results for all patients. 
-* list_of_patients_neurons: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 144]```
+* list_of_patients_behavior: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```. You can also input ```list_of_patients = 'all'``` to examine the results for all patients. 
+* list_of_patients_neurons: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```
 
 ```python 
 import RutishauserLabtoNWB as RLab
 
 NWBFilePath = 'V:\\LabUsers\\chandravadian\\NWB Data\\python'
 list_of_patients_behavior = [5, 6]
-list_of_patients_neurons = [144]
+list_of_patients_neurons = [132]
 
 RLab.NO2NWB_analysis(NWBFilePath,list_of_patients_behavior, list_of_patients_neurons)
 
 ```
 
-Once you have changed the the above parameters, run `NO2NWB_analysis`. This will begin the analysis of the data in the NWB:N format. 
+Once you have changed the the above parameters, run `NO2NWB_analysis`. This will begin the analysis of the data in the NWB:N format. Note that you have to close the plots that open up for the analysis to continue, the code blocks after opening a figure.
 
 
 <!--- Raster Plot Here (Python) ---> 
@@ -153,7 +155,7 @@ This code shows how to import and analyze the NWB-formatted data. The main expor
 
 ```matlab 
 %Input Base Path to the Native Data
-basepath = 'C:\Users\chandravadn1\Desktop\code\data\';
+basepath = 'C:\Users\chandravadn1\Desktop\code\dataNative\';
 
 %Add base code path (e.g., 'C:\svnwork\nwbsharing') 
 codePath = '\\RutishauserLabtoNWB\\';
