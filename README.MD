@@ -186,7 +186,7 @@ exportStimInfo = 1;   % 0 no, 1 yes.  If turned off, the resulting NWB files do 
 ```
 
 **%% Section 2: Which sessions to process (modify only 'allSessionsToUse')**
-* **allSessionsToUse**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 144]```
+* **allSessionsToUse**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```
 
 
 ```matlab
