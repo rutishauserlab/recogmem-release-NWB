@@ -108,9 +108,9 @@ Once you have changed the the above parameters, run `NO2NWB_export`. This will b
 
 This code shows how to import the NWB-formatted data. The main analysis script is `main.py`. Modify the following parameters:
 
-* NWBFilePath: The path to the exported NWB files. 
-* list_of_patients_behavior: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```. You can also input ```list_of_patients = 'all'``` to examine the results for all patients. 
-* list_of_patients_neurons: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```
+* **NWBFilePath**: The path to the exported NWB files. 
+* **list_of_patients_behavior**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```. You can also input ```list_of_patients = 'all'``` to examine the results for all patients. 
+* **list_of_patients_neurons**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```
 
 ```python 
 import RutishauserLabtoNWB as RLab
@@ -170,7 +170,8 @@ The main analysis script is `NWBneural_main.m`. Witin `NWBneural_main.m`, modify
 **%% Section 1: Set Parameters - modify this section before running this code !**
 
 * [codePath](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB): the path to the NWB:N code.
-* basepathData: The path to the exported NWB files. 
+* **basepathData**: The path to the exported NWB files. 
+* **exportStimInfo**: Indicates whether or not stimuli will be exported into NWB file (0 no, 1 yes)
 
 ```matlab 
 %% Section 1: Set Parameters - modify this section before running this code !
@@ -181,10 +182,11 @@ codePath = '\\RutishauserLabtoNWB\\';
 % Point this directory to where the downloaded NWB data is located.
 basepathData = 'V:\LabUsers\chandravadian\NWB Data\'; 
 
+exportStimInfo = 1;   % 0 no, 1 yes.  If turned off, the resulting NWB files do not contain the stimuli shown (images). This reduces the size of the NWB files considerably
 ```
 
 **%% Section 2: Which sessions to process (modify only 'allSessionsToUse')**
-* allSessionsToUse: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 144]```
+* **allSessionsToUse**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 144]```
 
 
 ```matlab
