@@ -13,20 +13,20 @@
 
 % Point this directory to where the downloaded code is located.
 %codePath = 'C:\svnwork\nwbsharing\RutishauserLabtoNWB\'; % => enter here your path where the code is located. For Windows: 'nwb_example\'; For Linux or Mac: 'nwb_example/'
-codePath = '/home/urut/svnwork/recogmem-release-NWB.git/trunk/RutishauserLabtoNWB/';
+codePath = 'C:\svnwork\nwbsharing\RutishauserLabtoNWB\';
 
 % Point this directory to where the downloaded NWB data is located.
 %basepathData = 'V:\LabUsers\chandravadian\NWB Data\matlab_win\';%  => enter here your path where the data is located. For Windows: 'data\'; For Linux or Mac: 'data/'
-basepathData = '/media/urut/My Passport/dataNWB/matlab_exportedUeli_linux4/';
+basepathData = 'V:\LabUsers\chandravadian\NWB Data\python_win\';
    
 %List of sessions to analyze (for testing purposes)
-allSessionsToUse = [5]; 
+allSessionsToUse = [5, 132]; 
 
 runAllAvailableSesssions = 0 ; % enable to process all available sessions (not just the one(s) specified above). Uses NWB_listOf_allUsable
 
 addpath(fullfile(codePath)); 
 
-%% Section 2: Which sessions to process (modify only 'allSessionsToUse') 
+%% Section 2: Which sessions to process 
 
 inifileName = [codePath, filesep, 'events', filesep, 'newolddelay', filesep, ... 
     'defineNOsessions_release.ini']; 

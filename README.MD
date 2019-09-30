@@ -171,8 +171,10 @@ The main analysis script is `NWBneural_main.m`. Witin `NWBneural_main.m`, modify
 
 * [codePath](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB): the path to the NWB:N code.
 * **basepathData**: The path to the exported NWB files. 
-* **exportStimInfo**: Indicates whether or not stimuli will be exported into NWB file (0 no, 1 yes)
-
+* **exportStimInfo**: Indicates whether or not stimuli will be exported into NWB file (0: no, 1: yes)
+* **allSessionsToUse**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```
+* **runAllAvailableSesssions**: Enable to process all available sessions (not just the one(s) specified above). Uses NWB_listOf_allUsable
+ 
 ```matlab 
 %% Section 1: Set Parameters - modify this section before running this code !
 
@@ -183,18 +185,9 @@ codePath = '\\RutishauserLabtoNWB\\';
 basepathData = 'V:\LabUsers\chandravadian\NWB Data\'; 
 
 exportStimInfo = 1;   % 0 no, 1 yes.  If turned off, the resulting NWB files do not contain the stimuli shown (images). This reduces the size of the NWB files considerably
+
+runAllAvailableSesssions = 0;
 ```
-
-**%% Section 2: Which sessions to process (modify only 'allSessionsToUse')**
-* **allSessionsToUse**: This signifies the NOID (Patient Identifier). See defineNOsessions.ini to see the NOID for all patients. Note: You can list more than one NOID. For example, ```list_of_patients = [5, 6, 132]```
-
-
-```matlab
-%% Section 2: Which sessions to process (modify only 'allSessionsToUse') 
-
-allSessionsToUse = [NWB_listOf_allUsable(:)]; %run all patients
-allSessionsToUse = [132]; %specifiy specific patients
-``` 
 
 Once you have changed the the above parameters, run `NWBneural_main.m`. This will begin the analysis of the data in the NWB:N format. 
 
