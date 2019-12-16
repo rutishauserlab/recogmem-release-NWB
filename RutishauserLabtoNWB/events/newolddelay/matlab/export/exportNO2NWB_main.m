@@ -44,10 +44,10 @@
 %Path to native data to be exported
 
 %basepath = 'C:\Users\chandravadn1\Desktop\code\data\Faraut et al 2018\';
-basepath = '/media/urut/My Passport/dataNWB/nativeData/';
+basepath = 'V:\LabUsers\chandravadian\NWB Data\NativeData\';
 
 %Add base code path (e.g., 'C:\svnwork\nwbsharing') 
-codePath = '/home/urut/svnwork/recogmem-release-NWB.git/trunk/RutishauserLabtoNWB/';
+codePath = 'C:\svnwork\nwbsharing\RutishauserLabtoNWB\';
 
 exportStimInfo = 1;   % 0 no, 1 yes.  If turned off, the resulting NWB files do not contain the stimuli shown (images). This reduces the size of the NWB files considerably
 

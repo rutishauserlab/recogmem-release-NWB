@@ -25,14 +25,14 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # ----------------------------------------------------------------------------------------------------------------------
 
-import urllib.request
-import zipfile
+
 import os.path
 import RutishauserLabtoNWB.events.newolddelay.python.export.no2nwb as no2nwb
 import RutishauserLabtoNWB.events.newolddelay.python.export.data as data
 from pynwb import NWBHDF5IO
 import numpy as np
 import logging
+
 
 
 def NO2NWB_export(path_to_data):
@@ -81,4 +81,3 @@ def NO2NWB_export(path_to_data):
         io.write(nwbfile, cache_spec = False)
         io.close()
         print('Successfully written this file: {}'.format(outputFilePath))
-

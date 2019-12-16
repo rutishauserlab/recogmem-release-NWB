@@ -17,10 +17,10 @@ codePath = 'C:\svnwork\nwbsharing\RutishauserLabtoNWB\';
 
 % Point this directory to where the downloaded NWB data is located.
 %basepathData = 'V:\LabUsers\chandravadian\NWB Data\matlab_win\';%  => enter here your path where the data is located. For Windows: 'data\'; For Linux or Mac: 'data/'
-basepathData = 'V:\LabUsers\chandravadian\NWB Data\python_win\';
+basepathData = 'V:\LabUsers\chandravadian\NWB Data\NWBData\';
    
 %List of sessions to analyze (for testing purposes)
-allSessionsToUse = [5, 132]; 
+allSessionsToUse = [5]; 
 
 runAllAvailableSesssions = 0 ; % enable to process all available sessions (not just the one(s) specified above). Uses NWB_listOf_allUsable
 
@@ -84,7 +84,7 @@ analysisMode = 1;    % recogexportnition part. only this mode allows what follow
 %analysisMode = 2;    % learning part. No MS cell analysis here since all images are novel at this point.
 
 paramsInPreset=[];
-paramsInPreset.doPlot =  1;   % plot significant units. Warning, doPlot=1 generates a lot of figures! Put doPlot=0 to avoid that: it will only run statistics but don't make plots.
+paramsInPreset.doPlot =  0;   % plot significant units. Warning, doPlot=1 generates a lot of figures! Put doPlot=0 to avoid that: it will only run statistics but don't make plots.
 paramsInPreset.plotAlways = 0; % if enabled, plot all cells regardless of significance
 % paramsInPreset.onlyChannels = [];   % to focus on particular set of channel(s), set this to a list of numbers. ie. [22 25 28].  [] means all channels available.
 paramsInPreset.onlyAreas = [1, 2, 3, 4, 8, 13];   % which areas to process. see translateArea.m 

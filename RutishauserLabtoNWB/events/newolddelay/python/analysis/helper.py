@@ -1,3 +1,4 @@
+
 from pynwb import NWBHDF5IO
 import numpy as np
 import math
@@ -398,8 +399,8 @@ def extract_response_from_nwbfile(nwbfile):
     """
     experiment_description = nwbfile.experiment_description
     experiment_ids = np.unique(nwbfile.acquisition['experiment_ids'].data)
-    experiment_id_recog = int(experiment_ids[2])
-    experiment_id_learn = int(experiment_ids[1])
+    experiment_id_recog = int(experiment_ids[1])
+    experiment_id_learn = int(experiment_ids[0])
 
     events = (np.asarray(nwbfile.get_acquisition('events').data)).astype(float)
     experiments = np.asarray(nwbfile.get_acquisition('experiment_ids').data)

@@ -92,7 +92,8 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
                     pt_session = config[section][value].strip("'")
                 if value.lower() == 'nosessions.date':
                     unformattedDate = config[section][value].strip("'")
-                    #date = datetime.strptime(unformattedDate, '%Y-%m-%d %H:%M')
+                    date = datetime.strptime(unformattedDate, '%Y-%m-%d')
+                    finaldate = date.replace(hour = 0, minute = 0)
                 if value.lower() == 'nosessions.institution':
                     institution = config[section][value].strip("'")
                 if value.lower() == 'nosessions.la':
@@ -135,14 +136,15 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
                         RH_x = float(RH[0])
                         RH_y = float(RH[1])
                         RH_z = float(RH[2])
-
+                if value.lower() == 'nosessions.system':
+                    signalSystem = config[section][value].strip("'")
 
     # =================================================================
 
 
 
     print('=======================================================================')
-    print('session_use: {}'.format(session_id))
+    print('session use: {}'.format(session_id))
     print('age: {}'.format(age))
     print('epilepsy_diagnosis: {}'.format(epilepsyDx))
 
@@ -155,7 +157,7 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
         #source='https://datadryad.org/bitstream/handle/10255/dryad.163179/RecogMemory_MTL_release_v2.zip',
         session_description = 'New/Old recognition task for ID: {}. '.format(session_id),
         identifier = '{}_{}'.format(ID, session_use),
-        session_start_time = datetime(1900, 1, 1, 0,0, tzinfo=timezone.utc), #default session start time
+        session_start_time = finaldate, #default session start time
         file_create_date = datetime.now(),
         experiment_description = 'The data contained within this file describes a new/old recogntion task performed in '
                                  'patients with intractable epilepsy implanted with depth electrodes and Behnke-Fried '
@@ -171,7 +173,12 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
 
 
     # Add events and experiment_id acquisition
-    events_description = (""" The events coorespond to the TTL markers for each trial. For the learning trials, the TTL markers are the following: 55 = start of the experiment, 1 = stimulus ON, 2 = stimulus OFF, 3 = Question Screen Onset, 20 = Yes (21 = NO) during learning, 6 = End of Delay after Response, 66 = End of Experiment. For the recognition trials, the TTL markers are the following: 55 = start of experiment, 1 = stimulus ON, 2 = stimulus OFF, 3 = Question Screen Onset, 31:36 = Confidence (Yes vs. No) response, 66 = End of Experiment""")
+    events_description = (""" The events coorespond to the TTL markers for each trial. For the learning trials, the TTL markers 
+            are the following: 55 = start of the experiment, 1 = stimulus ON, 2 = stimulus OFF, 3 = Question Screen Onset [“Is this an animal?”], 
+            20 = Yes (21 = NO) during learning, 6 = End of Delay after Response, 66 = End of Experiment. For the recognition trials, 
+            the TTL markers are the following: 55 = start of experiment, 1 = stimulus ON, 2 = stimulus OFF, 3 = Question Screen Onset [“Have you seen this image before?”], 
+            31:36 = Confidence (Yes vs. No) response [31 (new, confident), 32 (new, probably), 33 (new, guess), 34 (old, guess), 
+            35 (old, probably), 36 (old, confident)], 66 = End of Experiment""")
 
     event_ts = AnnotationSeries(name = 'events', data = np.asarray(events[1].values).astype(str), timestamps=np.asarray(events[0].values)/TIME_SCALING,
                                 description = events_description)
@@ -238,17 +245,18 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
     new_old_recog = [trial.new_old_recog for trial in trials]
     # Create the trial tables
 
-    nwbfile.add_trial_column('stim_on_time', 'the time when the stimulus is shown')
-    nwbfile.add_trial_column('stim_off_time', 'the time when the stimulus is off')
-    nwbfile.add_trial_column('delay1_time', 'the time when delay1 is off')
-    nwbfile.add_trial_column('delay2_time', 'the time when delay2 is off')
-    nwbfile.add_trial_column('stim_phase', 'learning/recognition phase during the trial')
-    nwbfile.add_trial_column('stimCategory', 'the category id of the stimulus')
-    nwbfile.add_trial_column('category_name', 'the category name of the stimulus')
-    nwbfile.add_trial_column('external_image_file', 'the file path to the stimulus')
-    nwbfile.add_trial_column('new_old_labels_recog', 'labels for new or old stimulus')
-    nwbfile.add_trial_column('response_value', 'the response for each stimulus')
-    nwbfile.add_trial_column('response_time', 'the response time for each stimulus')
+    nwbfile.add_trial_column('stim_on_time', 'The Time when the Stimulus is Shown')
+    nwbfile.add_trial_column('stim_off_time', 'The Time when the Stimulus is Off')
+    nwbfile.add_trial_column('delay1_time', 'The Time when Delay1 is Off')
+    nwbfile.add_trial_column('delay2_time', 'The Time when Delay2 is Off')
+    nwbfile.add_trial_column('stim_phase', 'Learning/Recognition Phase During the Trial')
+    nwbfile.add_trial_column('stimCategory', 'The Category ID of the Stimulus')
+    nwbfile.add_trial_column('category_name', 'The Category Name of the Stimulus')
+    nwbfile.add_trial_column('external_image_file', 'The File Path to the Stimulus')
+    nwbfile.add_trial_column('new_old_labels_recog', '''The Ground truth Labels for New or Old Stimulus. 0 == Old Stimuli 
+                            (presented during the learning phase), 1 = New Stimuli (not seen )'during learning phase''')
+    nwbfile.add_trial_column('response_value', 'The Response for Each Stimulus')
+    nwbfile.add_trial_column('response_time', 'The Response Time for each Stimulus')
 
     range_recog = np.amin([len(events_recog_stim_on), len(events_recog_stim_off), len(events_recog_delay1_off),
                            len(events_recog_delay2_off)])
@@ -437,7 +445,7 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
     nwbfile.add_electrode_column(name = 'origChannel', description = 'The original channel ID for the channel')
 
     #Add Device
-    device = nwbfile.create_device(name='NLX')
+    device = nwbfile.create_device(name= signalSystem)
 
     # Add Electrodes (brain Area Locations, MNI coordinates for microwires)
     length_all_spike_cluster_ids = len(all_spike_cluster_ids)
@@ -448,8 +456,8 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
         if brainArea_location == 'RH': #  Right Hippocampus
             full_brainArea_Location = 'Right Hippocampus'
 
-            electrode_name = 'NLX-microwires-{}'.format(channel_ids[electrodeNumber])
-            description = ""
+            electrode_name = '{}-microwires-{}'.format(signalSystem, channel_ids[electrodeNumber])
+            description = "Behnke Fried/Micro Inner Wire Bundle (Behnke-Fried BF08R-SP05X-000 and WB09R-SP00X-0B6; Ad-Tech Medical)"
             location = full_brainArea_Location
 
             # Add electrode group
@@ -468,8 +476,8 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
         if brainArea_location == 'LH':
             full_brainArea_Location = 'Left Hippocampus'
 
-            electrode_name = 'NLX-microwires-{}'.format(channel_ids[electrodeNumber])
-            description = ""
+            electrode_name = '{}-microwires-{}'.format(signalSystem, channel_ids[electrodeNumber])
+            description = "Behnke Fried/Micro Inner Wire Bundle (Behnke-Fried BF08R-SP05X-000 and WB09R-SP00X-0B6; Ad-Tech Medical)"
             location = full_brainArea_Location
 
             # Add electrode group
@@ -486,8 +494,8 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
         if brainArea_location == 'RA':
             full_brainArea_Location = 'Right Amygdala'
 
-            electrode_name = 'NLX-microwires-{}'.format(channel_ids[electrodeNumber])
-            description = ""
+            electrode_name = '{}-microwires-{}'.format(signalSystem, channel_ids[electrodeNumber])
+            description = "Behnke Fried/Micro Inner Wire Bundle (Behnke-Fried BF08R-SP05X-000 and WB09R-SP00X-0B6; Ad-Tech Medical)"
             location = full_brainArea_Location
 
             # Add electrode group
@@ -504,8 +512,8 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
         if brainArea_location == 'LA':
             full_brainArea_Location = 'Left Amygdala'
 
-            electrode_name = 'NLX-microwires-{}'.format(channel_ids[electrodeNumber])
-            description = ""
+            electrode_name = '{}-microwires-{}'.format(signalSystem, channel_ids[electrodeNumber])
+            description = "Behnke Fried/Micro Inner Wire Bundle (Behnke-Fried BF08R-SP05X-000 and WB09R-SP00X-0B6; Ad-Tech Medical)"
             location = full_brainArea_Location
 
             # Add electrode group
