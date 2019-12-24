@@ -34,8 +34,8 @@ For matlab or python, this repository can be downloaded via:
 ## Installation (Data)
 
 There are two different data downloads:
-1) To export the data from our internal proprietary format to NWB, you first need to download the raw data (Link here once available). 
-2) If you only need the dataset in NWB (to analyze the data), download the dataset from here (place link here once available).
+1) To export the data from our internal proprietary format to NWB, you first need to download the [raw data](https://osf.io/cd6qp/). 
+2) If you only need the dataset in NWB (to analyze the data), download the dataset from [here](https://osf.io/pybzc/).
 
 ## Installation (pyNWB and matNWB)
 
@@ -69,6 +69,7 @@ Here are a list of Python packages we used, and their respective versions:
 * matplotlib (2.2.2)
 * pynwb (1.1.0)
 * hdmf (1.2.0)
+* seaborn (0.9.0)
 
 Please assure that you're using the above versions of pywnb and hdmf, because newer development versions often break things. Use `pip install pynwb==1.1.0` and  `pip install hdmf==1.2.0` to force installation of these versions.
 
@@ -84,7 +85,7 @@ This code shows how to export from our internal dataformat to NWB. Note that if 
 The main export script is `no2nwb_main.py`. Modify the following parameters:
 
 
-* [pathtoNativeData](https://datadryad.org/): the path to Native Data. 
+* [pathtoNativeData](https://osf.io/cd6qp/): the path to Native Data. 
 *Note: The Native Data must be downloaded via the provided external link, and the path to data must be given as shown below.*
 
 
@@ -147,7 +148,7 @@ This code shows how to import and analyze the NWB-formatted data. The main expor
 
 **%% Section 1 -- Set Parameters - modify this section before running this code !**
 
-* [basepath](https://datadryad.org/): the path to Native Data. 
+* [basepath](https://osf.io/cd6qp/): the path to Native Data. 
 *Note: The Native Data must be downloaded via the provided external link, and the path to data must be given as shown below.*
 * [codePath](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB): the path to the NWB:N code.  
 
@@ -197,12 +198,26 @@ Once you have changed the the above parameters, run `NWBneural_main.m`. This wil
 </p> 
 
 
+### Jupyter Notebook
+
+![Alt Text](https://media.giphy.com/media/igtwCeD01AU0zmPsUN/giphy.gif)
+
+
+Additionally, we have included two Jupyter Notebooks ([demoAnalysis.ipynb](https://github.com/rutishauserlab/recogmem-release-NWB/blob/master/RutishauserLabtoNWB/events/newolddelay/python/analysis/demo/demoAnalysis.ipynb)
+& [plotFigure5.ipynb](https://github.com/rutishauserlab/recogmem-release-NWB/blob/master/RutishauserLabtoNWB/events/newolddelay/python/analysis/demo/plotFigure5.ipynb)) that 
+replicate key processes in our pipeline. These notebooks demonstrate how to read from the NWB files, and run
+simple analyses based on these files. 
+
+
+
 ## Contributors
 * [Nand Chandravadia](mailto:Nand.Chandravadia@cshs.org) 
 * [Andy Liang](mailto:liang134@mail.chapman.edu) 
 * [Ueli Rutishauser](mailto:Ueli.Rutishauser@cshs.org) (Principal Investigator)
 
-Feel free to ask questions and/or join the development discussion. You can post bug reports and feature requests. You are welcome to use/modify the code/data in this repository as you wish -- if you do, please cite our data descriptor: (**TODO: Add Data Descriptor**)
+Feel free to ask questions and/or join the development discussion. You can post bug reports and feature requests. You are welcome to use/modify the code/data in this repository as you wish -- if you do, please cite our data descriptor: 
+
+* Chandravadia, N. et al. *Open Science Framework* https://doi.org/10.17605/OSF.IO/HV7JA (2019)
 
 ## Funding
 
