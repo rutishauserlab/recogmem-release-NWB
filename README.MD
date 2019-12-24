@@ -198,7 +198,7 @@ Once you have changed the the above parameters, run `NWBneural_main.m`. This wil
 </p> 
 
 
-### Jupyter Notebook
+## Jupyter Notebook
 
 ![Alt Text](https://media.giphy.com/media/igtwCeD01AU0zmPsUN/giphy.gif)
 
