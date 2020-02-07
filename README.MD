@@ -2,12 +2,13 @@
 
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Generic badge](https://img.shields.io/badge/release-1.0.0-green.svg)](https://github.com/rutishauserlab/recogmem-release-NWB/releases/)
+[![Generic badge](https://img.shields.io/badge/DOI-10.17605/OSF.IO/HV7JA-orange.svg)](https://osf.io/hv7ja/)
 
 ## Introduction 
 
 This repository contains tools/methods to export human single neuron data into the [Neurodata Without Borders](https://www.nwb.org/) Format, and analyze such data in NWB. This dataset is entirely in the NWB Format, and the export and analysis scripts are in both Python and MATLAB. 
 
-This code accompanies the paper "A NWB-based Dataset and Processing Pipeline of Human Single-Neuron Activity During a Declarative Memory Task" by N. Chandravadia, D. Liang, A. G.P. Schjetnan, A. Carlson, M. Faraut, J.M. Chung, C.M. Reed, B. Dichter, U. Maoz, S. Kalia, T. Valiante, A. N. Mamelak & U. Rutishauser. Submitted (2019).
+This code accompanies the paper "A NWB-based Dataset and Processing Pipeline of Human Single-Neuron Activity During a Declarative Memory Task" by N. Chandravadia, D. Liang, A. G.P. Schjetnan, A. Carlson, M. Faraut, J.M. Chung, C.M. Reed, B. Dichter, U. Maoz, S. Kalia, T. Valiante, A. N. Mamelak & U. Rutishauser. Scientific Data, in press (2020).
 
 Abstract of the paper: 
 
