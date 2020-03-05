@@ -8,7 +8,7 @@
 
 This repository contains tools/methods to export human single neuron data into the [Neurodata Without Borders](https://www.nwb.org/) Format, and analyze such data in NWB. This dataset is entirely in the NWB Format, and the export and analysis scripts are in both Python and MATLAB. 
 
-This code accompanies the paper "A NWB-based Dataset and Processing Pipeline of Human Single-Neuron Activity During a Declarative Memory Task" by N. Chandravadia, D. Liang, A. G.P. Schjetnan, A. Carlson, M. Faraut, J.M. Chung, C.M. Reed, B. Dichter, U. Maoz, S. Kalia, T. Valiante, A. N. Mamelak & U. Rutishauser. Scientific Data, in press (2020).
+This code accompanies the paper: Chandravadia, N., Liang, D., Schjetnan, A. G. P., Carlson, A., Faraut, M., Chung, J. M., Reed, C. M., Dichter, B., Maoz, U., Kalia, S. K., Valiante, T. A., Mamelak, A. N. & Rutishauser, U. A NWB-based dataset and processing pipeline of human single-neuron activity during a declarative memory task. Scientific Data 7, 78, (2020). [Link to paper](https://www.nature.com/articles/s41597-020-0415-9)
 
 Abstract of the paper: 
 
@@ -218,7 +218,7 @@ simple analyses based on these files.
 
 Feel free to ask questions and/or join the development discussion. You can post bug reports and feature requests. You are welcome to use/modify the code/data in this repository as you wish -- if you do, please cite our data descriptor: 
 
-* Chandravadia, N. et al. *Open Science Framework* https://doi.org/10.17605/OSF.IO/HV7JA (2019)
+* Chandravadia, N., Liang, D., Schjetnan, A. G. P., Carlson, A., Faraut, M., Chung, J. M., Reed, C. M., Dichter, B., Maoz, U., Kalia, S. K., Valiante, T. A., Mamelak, A. N. & Rutishauser, U. A NWB-based dataset and processing pipeline of human single-neuron activity during a declarative memory task. Scientific Data 7, 78, (2020). 
 
 ## Funding
 
