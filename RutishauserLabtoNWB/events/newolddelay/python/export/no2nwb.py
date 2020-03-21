@@ -150,7 +150,7 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
 
     nwb_subject = Subject(age = str(age), description = epilepsyDx,
                           sex = sex, species = 'Human',
-                          subject_id=pt_session)
+                          subject_id=pt_session[:pt_session.find('_')])
 
     # Create the NWB file
     nwbfile = NWBFile(
