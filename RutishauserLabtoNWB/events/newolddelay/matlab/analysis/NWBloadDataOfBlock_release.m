@@ -79,16 +79,16 @@ end
 
 
 %reaction time of the response
-stimOnsetTime = events_ts( indsStimOn);        
+stimOnsetTime = events_all( indsStimOn);        
 
-stimOffsetTime = events_ts( indsStimOn+1);        
+stimOffsetTime = events_all( indsStimOn+1);        
 
-questionOnsetTime = events_ts(indsStimOn+2);
+questionOnsetTime = events_all(indsStimOn+2);
 
 StimOff_toQ_delay = (questionOnsetTime-stimOffsetTime)/1000;
 StimOn_toOff_delay = (stimOffsetTime-stimOnsetTime)/1000;
 
-responseTime  = events_ts( indsStimOn+3);
+responseTime  = events_all( indsStimOn+3);
 
 RTs = (responseTime-stimOnsetTime)/1000; %in ms
 RTs_vsQonset = (responseTime-questionOnsetTime)/1000; 
