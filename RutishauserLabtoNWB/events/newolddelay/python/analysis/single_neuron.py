@@ -397,7 +397,7 @@ def extract_neuron_data_from_nwb(nwbfile):
                 trials_recog.append(trial)
 
     for channel in range(len(channels)):
-        spike_timestamps = np.asarray(nwbfile.units.get_unit_spike_times(channel))
+        spike_timestamps = (np.asarray(nwbfile.units.get_unit_spike_times(channel))) * TIME_SCALING
         cell_ids = channels[channel]
 
         for cell_id in np.unique(cell_ids):
