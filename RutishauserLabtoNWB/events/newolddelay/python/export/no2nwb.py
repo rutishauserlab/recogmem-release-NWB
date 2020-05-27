@@ -404,7 +404,7 @@ def no2nwb(NOData, session_use, subjects_ini, path_to_data):
 
 
         spike_cluster_id = np.asarray([spike[1] for spike in spikes]) # Each Cluster ID of the spike
-        spike_timestamps = np.asarray([spike[2] for spike in spikes]) # Timestamps of spikes for each ClusterID
+        spike_timestamps = (np.asarray([spike[2] for spike in spikes]))/(TIME_SCALING) # Timestamps of spikes for each ClusterID
         unique_cluster_ids = np.unique(spike_cluster_id)
 
 
