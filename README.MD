@@ -212,7 +212,7 @@ simple analyses based on these files.
 
 
 ## Contributors
-* [Nand Chandravadia](mailto:Nand.Chandravadia@cshs.org) 
+* [Nand Chandravadia](mailto:nand.c@columbia.edu) 
 * [Andy Liang](mailto:liang134@mail.chapman.edu) 
 * [Ueli Rutishauser](mailto:Ueli.Rutishauser@cshs.org) (Principal Investigator)
 
