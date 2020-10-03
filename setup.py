@@ -5,7 +5,7 @@ with open("README.MD", 'r') as f:
 
 setuptools.setup(
    name='RutishauserLabtoNWB',
-   version='1.0.5',
+   version='1.1.0',
    description='Export and Analysis Code for NWB:N',
    license="BSD",
    long_description=long_description,
