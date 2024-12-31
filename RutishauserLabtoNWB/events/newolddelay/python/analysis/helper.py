@@ -79,6 +79,7 @@ def extract_new_old_label(nwbfile):
     if not (labels.dtype == 'O'): #check Matlab data type
         new_old_labels = np.delete(labels, np.where(labels == 10)).astype(int)
     else: #Python
+        labels = labels.astype(str)
         new_old_labels = np.delete(labels, np.where(labels == 'NA')).astype(int)
 
     return new_old_labels
@@ -240,6 +241,7 @@ def cal_typecounter(nwbfile):
     if not (labels.dtype == 'O'):  # check Matlab data type
         new_old_labels = np.delete(labels, np.where(labels == 10)).astype(int)
     else:  # Python
+        labels = labels.astype(str)
         new_old_labels = np.delete(labels, np.where(labels == 'NA')).astype(int)
 
 
