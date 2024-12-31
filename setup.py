@@ -16,7 +16,7 @@ setuptools.setup(
               'RutishauserLabtoNWB/events/newolddelay/python/analysis', 'RutishauserLabtoNWB/events/newolddelay/python/analysis/demo',
               'RutishauserLabtoNWB/events/newolddelay/python/export',
               'RutishauserLabtoNWB/events/newolddelay/python/export/demo', 'RutishauserLabtoNWB/InHouse', 'RutishauserLabtoNWB/NWBData'],
-   install_requires=['numpy', 'pandas', 'scipy', 'matplotlib', 'pynwb>=2.8.3', 'opencv-python', 'hdmf==1.2.0', 'seaborn'], #external packages as dependencies
+   install_requires=['numpy', 'pandas', 'scipy', 'matplotlib', 'pynwb>=2.8.3', 'opencv-python', 'hdmf>=3.14.5', 'seaborn'], #external packages as dependencies
    keywords = ['Cognitive Neuroscience', 'Neuroscience', 'Neurosurgery', 'Single Unit Recordings', 'Data Standardization'],
     include_package_data=True,
     classifiers=[ "Programming Language :: Python :: 3", "Operating System :: OS Independent"],
