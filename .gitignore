@@ -20,3 +20,8 @@ dist/
 
 #nwb
 *.nwb
+
+.venv
+InHouse/
+NWBData/
+/test.py
