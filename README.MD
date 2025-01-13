@@ -6,7 +6,7 @@
 
 ## Introduction 
 
-This repository contains tools/methods to export human single neuron data into the [Neurodata Without Borders](https://www.nwb.org/) Format, and analyze such data in NWB. This dataset is entirely in the NWB Format, and the export and analysis scripts are in both Python and MATLAB. 
+This repository contains tools/methods to export human single neuron data into the [Neurodata Without Borders](https://www.nwb.org/) Format, and analyze such data in NWB. This dataset is entirely in the NWB Format, and the export and analysis scripts are in both Python and MATLAB (version R2019b). 
 
 This code accompanies the paper: Chandravadia, N., Liang, D., Schjetnan, A. G. P., Carlson, A., Faraut, M., Chung, J. M., Reed, C. M., Dichter, B., Maoz, U., Kalia, S. K., Valiante, T. A., Mamelak, A. N. & Rutishauser, U. A NWB-based dataset and processing pipeline of human single-neuron activity during a declarative memory task. Scientific Data 7, 78, (2020). [Link to paper](https://www.nature.com/articles/s41597-020-0415-9)
 
@@ -135,10 +135,10 @@ Once you have changed the the above parameters, run `NO2NWB_analysis`. This will
 
 
 <!--- MATLAB ---> 
-## MATLAB Export and Analysis
+## MATLAB Export and Analysis (version R2019b)
 
 
-Here, we will detail how to run the MATLAB Export Code, which converts the native data into NWB, and the Single Neuron Analysis based on these NWB files. All the MATLAB code can be found here: [recogmem-release-NWB/RutishauserLabtoNWB/events/newolddelay/matlab/](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB/events/newolddelay/matlab)
+Here, we will detail how to run the MATLAB Export Code, which converts the native data into NWB, and the Single Neuron Analysis based on these NWB files. We used MATLAB R2019b. All the MATLAB code can be found here: [recogmem-release-NWB/RutishauserLabtoNWB/events/newolddelay/matlab/](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB/events/newolddelay/matlab)
 
 
 
