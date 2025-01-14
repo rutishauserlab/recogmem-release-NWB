@@ -244,7 +244,7 @@ class Neuron:
                                                        (self.spike_timestamps < (trial.delay2_off))]-(-1000000+trial.stim_on)
                                  for trial in trials]
 
-            axs[0].eventplot(np.asarray(trials_timestamps) / 1000, colors=color_mapping)
+            axs[0].eventplot(([t/1000 for t in trials_timestamps]), colors=color_mapping)
             axs[0].axvspan(height_light_range[0], height_light_range[1], color='grey', alpha=0.1)
             axs[0].set_xlim(xlim[0], xlim[1])
             axs[0].set_ylabel('Trials')
