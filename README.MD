@@ -138,7 +138,7 @@ Once you have changed the the above parameters, run `NO2NWB_analysis`. This will
 ## MATLAB Export and Analysis (version R2019b)
 
 
-Here, we will detail how to run the MATLAB Export Code, which converts the native data into NWB, and the Single Neuron Analysis based on these NWB files. We used MATLAB R2019b. All the MATLAB code can be found here: [recogmem-release-NWB/RutishauserLabtoNWB/events/newolddelay/matlab/](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB/events/newolddelay/matlab)
+Here, we will detail how to run the MATLAB Export Code, which converts the native data into NWB, and the Single Neuron Analysis based on these NWB files. We used MATLAB R2019b. Please note that the code currently does not run in MATLAB 2024. All the MATLAB code can be found here: [recogmem-release-NWB/RutishauserLabtoNWB/events/newolddelay/matlab/](https://github.com/rutishauserlab/recogmem-release-NWB/tree/master/RutishauserLabtoNWB/events/newolddelay/matlab)
 
 
 
